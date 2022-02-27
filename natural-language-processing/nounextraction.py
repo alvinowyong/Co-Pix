@@ -1,10 +1,12 @@
-from lib2to3.pgen2 import token
+import os
+from nltk.stem import PorterStemmer
+from tkinter import *
+import tkinter as tk
+from io import BytesIO
+from PIL import Image, ImageTk
 import nltk
 import requests
-from nltk.stem import PorterStemmer
-import requests
 import enchant
-import os
 
 english_dictionary = enchant.Dict("en_US")
 BASE_ENDPOINT = 'https://api.iconfinder.com/v4/'
@@ -20,27 +22,70 @@ noun_set = set(nouns)
 
 found = {}
 # Converting nouns to imagery
-for i, word in enumerate(noun_set):
-    if (not english_dictionary.check(word)):
-        continue
-    url = "https://api.iconfinder.com/v4/icons/search?query=" + word + "&count=1&premium=0"
-    headers = {
-        "Accept": "application/json",
-        "Authorization": "Bearer " + API_SECRET
-    }
+# for i, word in enumerate(noun_set):
+#     if (not english_dictionary.check(word)):
+#         continue
+#     url = "https://api.iconfinder.com/v4/icons/search?query=" + word + "&count=1&premium=0"
+#     headers = {
+#         "Accept": "application/json",
+#         "Authorization": "Bearer " + API_SECRET
+#     }
 
     
-    try:
-        response = requests.request("GET", url, headers=headers)
-        url = response.json()['icons'][0]['raster_sizes'][3]['formats'][0]['preview_url']
-        found[word] = url
-    except Exception as err:
-        print(str(i) + ". An error occured:", err)
-        continue
+#     try:
+#         response = requests.request("GET", url, headers=headers)
+#         url = response.json()['icons'][0]['raster_sizes'][3]['formats'][0]['preview_url']
+#         found[word] = url
+#     except Exception as err:
+#         print(str(i) + ". An error occured:", err)
+#         continue
 
-for word in tokenized:
-    if word in found.keys():
-        print(word, end=" ")
-        print(found[word])
-    else:
-        print(word, end=" ")
+# for word in tokenized:
+#     if word in found.keys():
+#         print(word, end=" ")
+#         print(found[word])
+#     else:
+#         print(word, end=" ")
+
+# for sentence in nltk.sent_tokenize(txt):
+#     wordcount = len(nltk.word_tokenize(sentence))
+#     for i, word in enumerate(nltk.word_tokenize(sentence)):
+#         if (i == wordcount - 2):
+#             if word in found.keys():
+#                 print(word, end=" ")
+#                 print(found[word])
+#             else:
+#                 print(word)
+#         else:
+#             if word in found.keys():
+#                 print(word, end=" ")
+#                 print(found[word])
+#             else:
+#                 print(word, end=" ")
+#     print()
+#     print()
+
+root = Tk()
+root.title("Co-Pix")
+root.geometry("1000x600")
+root.iconbitmap("copix_small.ico")
+
+T = Text(root, height = 5, width = 52)
+
+l = Label(root, text = "Fact of the Day")
+l.config(font =("Courier", 14))
+
+# myLabel2 = Label(root, text="<images here>", wraplength=900, justify="center")
+# response = requests.get("https://cdn3.iconfinder.com/data/icons/business-and-education-1/512/255_book_lesson_study_literature_reading-32.png")
+photo = ImageTk.PhotoImage(Image.open("520x520.png"))
+img = Label(image = photo)
+img.image = photo
+
+l.pack()
+T.pack()
+# img.pack()
+# myLabel2.pack()
+
+T.insert(tk.END, txt)
+T.insert(tk.END, "Hello")
+tk.mainloop()
