@@ -22,48 +22,49 @@ noun_set = set(nouns)
 
 found = {}
 # Converting nouns to imagery
-# for i, word in enumerate(noun_set):
-#     if (not english_dictionary.check(word)):
-#         continue
-#     url = "https://api.iconfinder.com/v4/icons/search?query=" + word + "&count=1&premium=0"
-#     headers = {
-#         "Accept": "application/json",
-#         "Authorization": "Bearer " + API_SECRET
-#     }
+for i, word in enumerate(noun_set):
+    if (not english_dictionary.check(word)):
+        continue
+    url = "https://api.iconfinder.com/v4/icons/search?query=" + word + "&count=1&premium=0"
+    headers = {
+        "Accept": "application/json",
+        "Authorization": "Bearer " + API_SECRET
+    }
 
     
-#     try:
-#         response = requests.request("GET", url, headers=headers)
-#         url = response.json()['icons'][0]['raster_sizes'][3]['formats'][0]['preview_url']
-#         found[word] = url
-#     except Exception as err:
-#         print(str(i) + ". An error occured:", err)
-#         continue
+    try:
+        response = requests.request("GET", url, headers=headers)
+        url = response.json()['icons'][0]['raster_sizes'][3]['formats'][0]['preview_url']
+        found[word] = url
+        print(url)
+    except Exception as err:
+        print(str(i) + ". An error occured:", err)
+        continue
 
-# for word in tokenized:
-#     if word in found.keys():
-#         print(word, end=" ")
-#         print(found[word])
-#     else:
-#         print(word, end=" ")
+for word in tokenized:
+    if word in found.keys():
+        print(word, end=" ")
+        print(found[word])
+    else:
+        print(word, end=" ")
 
-# for sentence in nltk.sent_tokenize(txt):
-#     wordcount = len(nltk.word_tokenize(sentence))
-#     for i, word in enumerate(nltk.word_tokenize(sentence)):
-#         if (i == wordcount - 2):
-#             if word in found.keys():
-#                 print(word, end=" ")
-#                 print(found[word])
-#             else:
-#                 print(word)
-#         else:
-#             if word in found.keys():
-#                 print(word, end=" ")
-#                 print(found[word])
-#             else:
-#                 print(word, end=" ")
-#     print()
-#     print()
+for sentence in nltk.sent_tokenize(txt):
+    wordcount = len(nltk.word_tokenize(sentence))
+    for i, word in enumerate(nltk.word_tokenize(sentence)):
+        if (i == wordcount - 2):
+            if word in found.keys():
+                print(word, end=" ")
+                print(found[word])
+            else:
+                print(word)
+        else:
+            if word in found.keys():
+                print(word, end=" ")
+                print(found[word])
+            else:
+                print(word, end=" ")
+    print()
+    print()
 
 root = Tk()
 root.title("Co-Pix")
