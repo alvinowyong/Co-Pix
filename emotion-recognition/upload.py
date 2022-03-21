@@ -26,4 +26,6 @@ print("\nUploading to Azure Storage as blob:\n\t" + local_file_name)
 with open(upload_file_path, "rb") as data:
     my_content_settings = ContentSettings(content_type='image/jpg')
     blob_client.upload_blob(data, overwrite=True, content_settings=my_content_settings)
+    url = blob_client.url
     print(blob_client.url)
+print(url)
