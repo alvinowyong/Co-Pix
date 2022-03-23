@@ -1,9 +1,10 @@
-import os 
+import os
 from pydub import AudioSegment
 import speech_recognition as sr
 from pydub.silence import split_on_silence
 
 recognizer = sr.Recognizer()
+
 
 def load_chunks(filename):
     long_audio = AudioSegment.from_mp3(filename)
@@ -12,6 +13,7 @@ def load_chunks(filename):
         silence_thresh=-17
     )
     return audio_chunks
+
 
 for audio_chunk in load_chunks('./Documents/speech.wav'):
     audio_chunk.export("temp", format="wav")

@@ -19,7 +19,6 @@ tokenized = nltk.word_tokenize(txt)
 nouns = [word for (word, pos) in nltk.pos_tag(tokenized) if is_noun(pos)]
 noun_set = set(nouns)
 
-
 found = {}
 # Converting nouns to imagery
 for i, word in enumerate(noun_set):
@@ -31,7 +30,6 @@ for i, word in enumerate(noun_set):
         "Authorization": "Bearer " + API_SECRET
     }
 
-    
     try:
         response = requests.request("GET", url, headers=headers)
         url = response.json()['icons'][0]['raster_sizes'][3]['formats'][0]['preview_url']
@@ -71,15 +69,15 @@ root.title("Co-Pix")
 root.geometry("1000x600")
 root.iconbitmap("copix_small.ico")
 
-T = Text(root, height = 5, width = 52)
+T = Text(root, height=5, width=52)
 
-l = Label(root, text = "Fact of the Day")
-l.config(font =("Courier", 14))
+l = Label(root, text="Fact of the Day")
+l.config(font=("Courier", 14))
 
 # myLabel2 = Label(root, text="<images here>", wraplength=900, justify="center")
 # response = requests.get("https://cdn3.iconfinder.com/data/icons/business-and-education-1/512/255_book_lesson_study_literature_reading-32.png")
 photo = ImageTk.PhotoImage(Image.open("520x520.png"))
-img = Label(image = photo)
+img = Label(image=photo)
 img.image = photo
 
 l.pack()

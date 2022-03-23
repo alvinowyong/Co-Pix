@@ -11,13 +11,13 @@ with sr.Microphone() as source:
     recorded_audio = recognizer.listen(source, timeout=4)
     print("Done recording")
 
-''' Recorgnizing the Audio '''
+''' Recognizing the Audio '''
 try:
     print("Recognizing the text")
     text = recognizer.recognize_google(
-            recorded_audio, 
-            language="en-US"
-        )
+        recorded_audio,
+        language="en-US"
+    )
     print("Decoded Text : {}".format(text))
 
 except Exception as ex:
