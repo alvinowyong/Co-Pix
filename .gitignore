@@ -1,5 +1,4 @@
 /.idea/
 /emotion-recognition/data/
 .env
-__pycache__/load.cpython-39.pyc
 *.pyc
