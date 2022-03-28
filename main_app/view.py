@@ -1,4 +1,3 @@
-from curses import window
 from pickle import TRUE
 import tkinter as tk
 from PIL import Image, ImageTk
@@ -6,7 +5,7 @@ import time
 import os.path
 import re
 
-DIVIDER = 8
+DIVIDER = 12
 
 def red_led():
     # Call red LED here
