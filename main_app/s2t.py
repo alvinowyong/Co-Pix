@@ -7,15 +7,13 @@ def speech_to_text(count):
     ''' recording the sound '''
 
     with sr.Microphone() as source:
-        print("Adjusting noise ")
         recognizer.adjust_for_ambient_noise(source, duration=1)
-        print("Recording for {} seconds".format(count))
+        print("Recording Started".format(count))
         recorded_audio = recognizer.listen(source, timeout=count)
-        print("Done recording")
+        print("Recording Ended")
 
     ''' Recognizing the Audio '''
     try:
-        print("Recognizing the text")
         text = recognizer.recognize_google(
             recorded_audio,
             language="en-US"
