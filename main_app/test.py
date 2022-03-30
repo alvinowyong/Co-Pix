@@ -23,8 +23,9 @@ def speech_to_text():
     time.sleep(5)
     clear_frame()
     # Recongized text goes here
-    text = "The first little pig was very lazy. He abandon. He didn't want to work at all and he built his house out of straw. The second little pig worked a little bit harder but the was somewhat lazy too and he built his house out of sticks. The first little pig was very lazy. He abandon. He didn't want to work at all and he built his house out of straw. The second little pig worked a little bit harder but the was somewhat lazy too and he built his house out of sticks."
+    text = "The first little pig was very lazy. He abandon. He didn't want to work at all and he built his house out of straw. The second little pig worked a little bit harder but the was somewhat lazy too and he built his house out of sticks."
     render_text(text)
+    voice_indicate['text'] = "Complete"
 
 def clear_frame():
     for widget in fr_text.winfo_children():
