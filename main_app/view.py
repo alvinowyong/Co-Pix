@@ -1,27 +1,51 @@
+from pickle import TRUE
+from tkinter import font
 import tkinter as tk
+from turtle import color
 from PIL import Image, ImageTk
 import time
 import os.path
 import re
 import math
+import led
+import s2t
+import camera
+import upload
 
 DIVIDER = 12
 
 def red_led():
     # Call red LED here
-    print("red led")
-    voice_indicate['text'] = "I am doubt"
+    led.red_led()
+    voice_indicate['text'] = "I'm in doubt"
 
 def speech_to_text():
+    led.off_leds()
     clear_frame()
     render_waiting()
     print("start recording")
     # Call Speed to text function here
-    time.sleep(5)
+    text = s2t.speech_to_text(2)
+    time.sleep(1)
     clear_frame()
     # Recongized text goes here
-    text = "The first little pig was very lazy. He abandon. He didn't want to work at all and he built his house out of straw. The second little pig worked a little bit harder but the was somewhat lazy too and he built his house out of sticks."
     render_text(text)
+    time.sleep(7)
+    # Take a photo using camera module
+    camera.take_photo()
+
+    # Fetch image from data folder
+    # Upload image blob to Azure and call to Emotion Recognition API
+    result = upload.emotion_recognition()
+
+    # Log FER results into console
+    print("[Log- FER Result]:", result)
+
+    # Enable LED based on FER results
+    if (result == 'happiness'):
+        led.green_led()
+    else:
+        led.red_led()
 
 def render_waiting():
     txt_label = tk.Label(fr_text, text="Listening")
@@ -49,12 +73,13 @@ def render_text(text):
             if(index >= len(words)):
                 continue
             word = words[index].capitalize()
+
             if(i % 2 == 0):
                 label = tk.Label(frame, text=words[index])
                 label.configure(font=txt_font)
             else:
                 word = re.sub(r'[^a-zA-Z]', '', word)
-                path = '../natural-language-processing/nouns/' + word + '.png'
+                path = '../natural-language-processing/nouns32/' + word + '.png'
                 if os.path.exists(path):
                     image = Image.open(path)
                     resized_image= image.resize((44,44), Image.ANTIALIAS)
@@ -64,6 +89,9 @@ def render_text(text):
             label.pack(padx=5, pady=5)
 
 root = tk.Tk()
+root.title("Co-Pix")
+root.iconbitmap("copix_small.ico")
+window = tk.Frame(root)
 
 #Get the current screen width and height
 screen_width = root.winfo_screenwidth()
