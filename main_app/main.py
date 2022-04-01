@@ -13,24 +13,26 @@ Note: Alternatively, threading library can be utilised during speech processing 
 executing FER API calls/
 """
 
-# Reset LED indicators before processing new requests
-led.off_leds()
 
-# Activate speech-to-text function
-s2t.speech_to_text(2)
+def main_app():
+    # Reset LED indicators before processing new requests
+    led.off_leds()
 
-# Take a photo using camera module
-camera.take_photo()
+    # Activate speech-to-text function
+    s2t.speech_to_text(2)
 
-# Fetch image from data folder
-# Upload image blob to Azure and call to Emotion Recognition API
-result = upload.emotion_recognition()
+    # Take a photo using camera module
+    camera.take_photo()
 
-# Log FER results into console
-print("[Log- FER Result]:", result)
+    # Fetch image from data folder
+    # Upload image blob to Azure and call to Emotion Recognition API
+    result = upload.emotion_recognition()
 
-# Enable LED based on FER results
-if (result == 'happiness'):
-    led.green_led()    
-else:
-    led.red_led()
+    # Log FER results into console
+    print("[Log- FER Result]:", result)
+
+    # Enable LED based on FER results
+    if (result == 'happiness'):
+        led.green_led()
+    else:
+        led.red_led()
