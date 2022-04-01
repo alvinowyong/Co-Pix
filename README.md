@@ -9,10 +9,9 @@ This project is assumes the utilisation of a Raspberry Pi. The version used Rasp
 2. Run the following commands in terminal:
 
 ```
-    pip install opencv-python python-dotenv SpeechRecognition azure-storage-blob pipwin
+    pip install opencv-python python-dotenv SpeechRecognition azure-storage-blob pipwin pillow 
     pipwin install pyaudio
-    sudo apt-get install portaudio19-dev
-    sudo apt-get install flac
+    sudo apt-get install portaudio19-dev python3-pil python3-pil.imagetk flac
 ```
 3. Run ``sudo raspi-config``
 4. Navigate to Interface Options and select Legacy camera to enable it.
