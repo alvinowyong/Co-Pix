@@ -26,8 +26,47 @@ def off_leds():
     # Turn of both GPIO pins
     GPIO.output(27,GPIO.LOW)
     GPIO.output(17,GPIO.LOW)
-        
     
+def indicate():
+    # Turn on GPIO pin 17
+    GPIO.output(17,GPIO.HIGH)
+    time.sleep(0.5)
+    GPIO.output(17,GPIO.LOW)
+    GPIO.output(27,GPIO.HIGH)
+    time.sleep(0.5)
+    GPIO.output(27,GPIO.LOW)
+    GPIO.output(17,GPIO.HIGH)
+    time.sleep(0.5)
+    GPIO.output(17,GPIO.LOW)
+    GPIO.output(27,GPIO.HIGH)
+    time.sleep(0.5)
+    GPIO.output(27,GPIO.LOW)
     
+def error():
+    # Turn on GPIO pin 27
+    GPIO.output(27,GPIO.HIGH)
+    time.sleep(0.5)
+    GPIO.output(27,GPIO.LOW)
+    time.sleep(0.5)
+    GPIO.output(27,GPIO.HIGH)
+    time.sleep(0.5)
+    GPIO.output(27,GPIO.LOW)
+    time.sleep(0.5)
+    GPIO.output(27,GPIO.HIGH)
+    time.sleep(0.5)
+    GPIO.output(27,GPIO.LOW)
     
+def success():
+    # Turn on GPIO pin 27
+    GPIO.output(17,GPIO.HIGH)
+    time.sleep(0.5)
+    GPIO.output(17,GPIO.LOW)
+    time.sleep(0.5)
+    GPIO.output(17,GPIO.HIGH)
+    time.sleep(0.5)
+    GPIO.output(17,GPIO.LOW)
+    time.sleep(0.5)
+    GPIO.output(17,GPIO.HIGH)
+    time.sleep(0.5)
+    GPIO.output(17,GPIO.LOW)   
     

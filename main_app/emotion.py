@@ -14,17 +14,15 @@ def get_emotion(image_url):
     headers = {'Ocp-Apim-Subscription-Key': subscription_key}
     body = {'url': image_url}
     params = {
-        'overload': 'stream',
-        'detectionModel': 'detection_01',
-        'returnFaceId': 'true',
         'returnFaceAttributes': 'emotion'
     }
 
-    response = requests.post(face_api_url, params=params. headers=headers, json=body)
+    response = requests.post(face_api_url, params=params, headers=headers, json=body)
     data = json.dumps(response.json())
     
     # Parse JSON into an object with attributes corresponding to dict keys.
     x = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+    print(data)
     dict = {"anger": x[0].faceAttributes.emotion.anger, "contempt": x[0].faceAttributes.emotion.contempt,
             "disgust": x[0].faceAttributes.emotion.disgust, "fear": x[0].faceAttributes.emotion.fear,
             "happiness": x[0].faceAttributes.emotion.happiness, "neutral": x[0].faceAttributes.emotion.neutral,
@@ -40,3 +38,4 @@ def get_emotion(image_url):
     # print("%s%s" % ("neutral: ", x[0].faceAttributes.emotion.neutral))
     # print("%s%s" % ("sadness: ", x[0].faceAttributes.emotion.sadness))
     # print("%s%s" % ("surprise: ", x[0].faceAttributes.emotion.surprise))
+

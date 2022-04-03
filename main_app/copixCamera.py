@@ -1,5 +1,5 @@
 from picamera import PiCamera
-from time import sleep
+import time
 
 """
 Initialise PiCamera module to capture image of users.
@@ -14,10 +14,12 @@ camera = PiCamera()
 
 # Snap photo and save to data folder as image.jpg
 def take_photo():
-    camera.capture('data/image.jpg')
+#     preview(2)
+    camera.capture('data/image.png')
 
 # Display view of camera in a window box
 def preview(duration):
+    camera.resolution = (2592, 1944)
     camera.start_preview()
     time.sleep(duration)
     camera.stop_preview()

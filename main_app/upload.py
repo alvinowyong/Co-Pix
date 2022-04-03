@@ -4,7 +4,7 @@ from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient, _
 from load import azure_blob_connection_string
 
 def emotion_recognition():
-    connect_str = 'DefaultEndpointsProtocol=https;AccountName=cs460;AccountKey=Be6zSGwaZlK3dORLVr+NIifPl7PEzzoUXiiKlLK/D68Ih1+mF/p1j6FibFaABKfTSgiz3x0LuhBpUJFDrvgcLQ==;EndpointSuffix=core.windows.net'
+    connect_str = 'DefaultEndpointsProtocol=https;AccountName=cs460;AccountKey=UEt99nkOt7A3MWONBg+kqy6sfMJN8tLdBRhijphYIQAHPHyNa6E3rFdSdSsLV0B+f1TNs+GMJLGo+6RyeDbJTg==;EndpointSuffix=core.windows.net'
 
     # Create the BlobServiceClient object which will be used to create a container client
     blob_service_client = BlobServiceClient.from_connection_string(connect_str)
@@ -15,7 +15,7 @@ def emotion_recognition():
     # Create a local directory to hold blob data
     local_path = "data/"
     # Create a file in the local data directory to upload and download
-    local_file_name = 'image.jpg'
+    local_file_name = 'image.png'
 
     upload_file_path = os.path.join(local_path, local_file_name)
     # upload_file_path = local_path + local_file_name
@@ -24,10 +24,10 @@ def emotion_recognition():
     blob_client = blob_service_client.get_blob_client(container=container_name, blob=local_file_name)
     # Upload the created file
     with open(upload_file_path, "rb") as data:
-        my_content_settings = ContentSettings(content_type='image/jpg')
+        my_content_settings = ContentSettings(content_type='image/png')
         blob_client.upload_blob(data, overwrite=True, content_settings=my_content_settings)
         url = blob_client.url
-
+    print(url)
     result = emotion.get_emotion(url)
 
     blob_client.delete_blob()

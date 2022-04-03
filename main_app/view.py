@@ -90,7 +90,7 @@ def render_text(text):
 
 root = tk.Tk()
 root.title("Co-Pix")
-root.iconbitmap("copix_small.ico")
+# root.iconbitmap("copix_small.ico")
 window = tk.Frame(root)
 
 #Get the current screen width and height
@@ -98,16 +98,16 @@ screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
 
 window = tk.Frame(root, width=screen_width, height=screen_height, bg="blue")
-root.attributes('-fullscreen', True)
+# root.attributes('-fullscreen', True)
 
 window.rowconfigure(1, weight=1)
 window.columnconfigure(2, weight=1)
 
 txt_font = ("Times New Roman", 24)
 
-fr_text = tk.Frame(window, width=screen_width, height=80, bg="red")
+fr_text = tk.Frame(window, width=screen_width, height=80)
 
-fr_buttons = tk.Frame(window, width=screen_width, height=screen_height-80, bg="green")
+fr_buttons = tk.Frame(window, width=screen_width, height=screen_height-80)
 # Creating a photoimage object to use image
 doubt_image = Image.open('./img/doubt.png')
 doubt_icon = ImageTk.PhotoImage(doubt_image)
