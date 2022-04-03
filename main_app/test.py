@@ -26,7 +26,8 @@ def speech_to_text():
     led.off_leds()
     clear_frame()
     # Call Speed to text function here
-    text = s2t.speech_to_text(2)
+#     text = s2t.speech_to_text(2)
+    text = "Little Red Riding Hood lived in the woods. One day Little Red Riding Hood went to visit her granny."
 
     # Recongized text goes here
     render_text(text)

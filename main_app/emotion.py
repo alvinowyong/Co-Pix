@@ -14,6 +14,7 @@ def get_emotion(image_url):
     headers = {'Ocp-Apim-Subscription-Key': subscription_key}
     body = {'url': image_url}
     params = {
+        'recognitionModel' :'recognition_04',
         'returnFaceAttributes': 'emotion'
     }
 
