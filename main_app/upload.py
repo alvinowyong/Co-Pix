@@ -4,7 +4,7 @@ from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient, _
 from load import azure_blob_connection_string
 
 def emotion_recognition():
-    connect_str = 'DefaultEndpointsProtocol=https;AccountName=cs460;AccountKey=UEt99nkOt7A3MWONBg+kqy6sfMJN8tLdBRhijphYIQAHPHyNa6E3rFdSdSsLV0B+f1TNs+GMJLGo+6RyeDbJTg==;EndpointSuffix=core.windows.net'
+    connect_str = ''
 
     # Create the BlobServiceClient object which will be used to create a container client
     blob_service_client = BlobServiceClient.from_connection_string(connect_str)
