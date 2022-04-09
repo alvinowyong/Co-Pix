@@ -1,5 +1,5 @@
 # Co-Pix
-Communication facilitation device for learners
+Communication facilitation device for learners (in Collaboration with MINDS Singapore).
 
 # Set-up
 
